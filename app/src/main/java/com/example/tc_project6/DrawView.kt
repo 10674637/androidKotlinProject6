@@ -81,46 +81,48 @@ class DrawView(context: Context, attrs: AttributeSet? = null): View(context, att
 
     override fun onDraw(canvas: Canvas){
         //protect edge fliy off
-//        if (nextX > (blockSize * 11 - xOffset)) {
-//            nextX = (blockSize * xOffset).toFloat()
-//        }
-//        if (nextY > (blockSize * 11 - yOffset)) {
-//            nextY = (blockSize * 10).toFloat()
-//        }
+        if (nextX > (blockSize * 11 - xOffset)) {
+//            println("X: ${nextX}, xOffset: ${xOffset}")
+            nextX = (xOffset - blockSize).toFloat()
+//            println("X: ${nextX}, xOffset: ${xOffset}")
+
+        }
+        if (nextY > (blockSize * 11 - yOffset)) {
+            nextY = (yOffset - blockSize*3).toFloat()
+        }
 
         //check nextX see where
-//        if (nextX == 0F && nextY == 0F) {
-//
-//        } else {
-            if (nextX > blockSize * 5) {
-                xOffset = blockSize * 6
-                nextX = 0F
-            } else if (nextX < blockSize){
-                //if already to the left
-                if (xOffset == 0) {
 
-                }
-                // if on the right
-                else {
-                    xOffset = 0;
-                    nextX = (blockSize * 6).toFloat()
-                }
-            }
-            if (nextY > blockSize * 8) {
-                yOffset = blockSize * 7
-                nextY = (blockSize * 2).toFloat()
-            } else if (nextY < blockSize) {
-                //if top already
-                if (yOffset == 0) {
+        if (nextX > blockSize * 5) {
+            xOffset = blockSize * 6
+            nextX = 0F
+            println("MOVE X TO 0")
 
-                }
-                // bring back to top
-                else {
-                    yOffset = 0
-                    nextY = (blockSize * 3).toFloat()
-                }
+        } else if (nextX < blockSize){
+            //if already to the left
+            if (xOffset == 0) {
+
             }
-//        }
+            // if on the right
+            else {
+                xOffset = 0;
+                nextX = (blockSize * 6).toFloat()
+            }
+        }
+        if (nextY > blockSize * 8) {
+            yOffset = blockSize * 7
+            nextY = (blockSize * 2).toFloat()
+        } else if (nextY < blockSize) {
+            //if top already
+            if (yOffset == 0) {
+
+            }
+            // bring back to top
+            else {
+                yOffset = 0
+                nextY = (blockSize * 3).toFloat()
+            }
+        }
 
 
         //make a two dimensional array of character that tell which image go to which square
